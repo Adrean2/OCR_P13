@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [migrations.swappable_dependency(settings.AUTH_USER_MODEL), ]
 
-    operations = [migrations.CreateModel(
+    state_operations = [migrations.CreateModel(
         name='Address', fields=[('id',
                                  models.AutoField(
                                      auto_created=True,
@@ -47,27 +47,37 @@ class Migration(migrations.Migration):
                                      max_length=3, validators=[
                                          django.core.validators.MinLengthValidator(3)]
                                  )), ], ),
-                  migrations.CreateModel(
-                      name='Profile', fields=[('id',
-                                               models.AutoField(auto_created=True,
-                                                                primary_key=True,
-                                                                serialize=False,
-                                                                verbose_name='ID')),
-                                              ('favorite_city',
-                                               models.CharField(blank=True, max_length=64)),
-                                              ('user',
-                                               models.OneToOneField(
-                                                   on_delete=django.db.models.deletion.CASCADE,
-                                                   to=settings.AUTH_USER_MODEL)), ], ),
-                  migrations.CreateModel(
-                      name='Letting', fields=[('id',
-                                               models.AutoField(auto_created=True,
-                                                                primary_key=True,
-                                                                serialize=False,
-                                                                verbose_name='ID')),
-                                              ('title',
-                                               models.CharField(max_length=256)),
-                                              ('address',
-                                               models.OneToOneField(
-                                                   on_delete=django.db.models.deletion.CASCADE,
-                                                   to='oc_lettings_site.Address')), ], ), ]
+        migrations.CreateModel(
+            name='Profile', fields=[('id',
+                                     models.AutoField(
+                                         auto_created=True,
+                                         primary_key=True,
+                                         serialize=False,
+                                         verbose_name='ID'
+                                     )),
+                                    ('favorite_city',
+                                     models.CharField(blank=True, max_length=64)),
+                                    ('user',
+                                     models.OneToOneField(
+                                         on_delete=django.db.models.deletion.CASCADE,
+                                         to=settings.AUTH_USER_MODEL
+                                     )), ], ),
+        migrations.CreateModel(
+            name='Letting', fields=[('id',
+                                     models.AutoField(
+                                         auto_created=True,
+                                         primary_key=True,
+                                         serialize=False,
+                                         verbose_name='ID'
+                                     )),
+                                    ('title',
+                                     models.CharField(max_length=256)),
+                                    ('address',
+                                     models.OneToOneField(
+                                         on_delete=django.db.models.deletion.CASCADE,
+                                         to='oc_lettings_site.Address'
+                                     )), ], ), ]
+
+    operations = [
+        migrations.SeparateDatabaseAndState(state_operations=state_operations)
+    ]

@@ -18,7 +18,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = ['oc_lettings_site.apps.OCLettingsSiteConfig', 'django.contrib.admin',
                   'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions',
-                  'django.contrib.messages', 'django.contrib.staticfiles', ]
+                  'django.contrib.messages', 'django.contrib.staticfiles',
+                  'profiles', 'lettings']
 
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
               'django.contrib.sessions.middleware.SessionMiddleware',
@@ -31,11 +32,13 @@ MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
 ROOT_URLCONF = 'oc_lettings_site.urls'
 
 TEMPLATES = [{'BACKEND': 'django.template.backends.django.DjangoTemplates',
-              'DIRS': [os.path.join(BASE_DIR, 'templates')], 'APP_DIRS': True, 'OPTIONS': {
-        'context_processors': ['django.template.context_processors.debug',
-                               'django.template.context_processors.request',
-                               'django.contrib.auth.context_processors.auth',
-                               'django.contrib.messages.context_processors.messages', ], }, }, ]
+              'DIRS': [os.path.join(BASE_DIR, 'oc_lettings_site/templates')], 'APP_DIRS': True,
+              'OPTIONS': {
+                  'context_processors': ['django.template.context_processors.debug',
+                                         'django.template.context_processors.request',
+                                         'django.contrib.auth.context_processors.auth',
+                                         'django.contrib.messages.context_processors.messages',
+                                         ], }, }, ]
 
 WSGI_APPLICATION = 'oc_lettings_site.wsgi.application'
 
@@ -71,3 +74,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
