@@ -11,6 +11,6 @@ from django.shortcuts import render
 def index(request):
     return render(
         request, 'oc_lettings_site/index.html', context={
-            "lettings_index": "lettings/templates/index.html",
-            "profiles_index": "profiles/templates/index.html"}
+            "lettings_index": "lettings:index",
+            "profiles_index": "profiles:index"}
     )
