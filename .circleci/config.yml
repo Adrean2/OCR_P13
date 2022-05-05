@@ -46,12 +46,12 @@ workflows:
       - build-docker:
         requires:
           - build-and-test # only run deploy-via-git job if the build job has completed
-          filters:
-            branches:
-              only: main
+        filters:
+          branches:
+            only: main
       - build-and-push-heroku:
           requires:
             - build-docker # only run deploy-via-git job if the build job has completed
-            filters:
-              branches:
-                only: main
+          filters:
+            branches:
+              only: main
