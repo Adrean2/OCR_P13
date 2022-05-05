@@ -14,4 +14,5 @@ class LettingsTest(TestCase):
         self.assertTemplateUsed(response, "lettings/index.html")
 
     def test_lettings_title(self):
-        response = self.client.get(reverse("lettings:letting", args=[self.request]))
+        response = self.client.get(reverse("lettings:letting"))
+        assert b"Lettings" in response

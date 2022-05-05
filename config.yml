@@ -1,0 +1,47 @@
+version: 2.1
+orbs:
+  python: circleci/python@2.0.3
+  docker: circleci/docker@2.1.0
+  heroku: circleci/heroku@1.2.6
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run tests
+          command: pytest
+      - run:
+          name: Run Flake8
+          command: flake8
+
+  build-docker:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+        image: ${DOCKER_LOGIN}/oc-lettings-p13
+      - docker/push:
+        image: ${DOCKER_LOGIN}/oc-lettings-p13
+  build-and-push-heroku:
+    docker:
+      - image: cimg/python:3.10.2
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git
+
+workflows:
+  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
+    jobs:
+      - build-and-test
+      - build-docker
+      - build-and-push-heroku
