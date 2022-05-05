@@ -27,9 +27,9 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-        - image: adrean/oc-lettings-p13
+          image: adrean/oc-lettings-p13
       - docker/push:
-        - image: adrean/oc-lettings-p13
+          image: adrean/oc-lettings-p13
   build-and-push-heroku:
     docker:
       - image: cimg/python:3.10.2
@@ -39,8 +39,7 @@ jobs:
       - heroku/deploy-via-git
 
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  P13-workflow:
     jobs:
       - build-and-test
       - build-docker
