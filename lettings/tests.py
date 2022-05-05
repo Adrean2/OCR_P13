@@ -6,13 +6,23 @@ from lettings.models import Letting, Address
 
 class LettingsTest(TestCase):
     def setUp(self):
-        self.letting = Letting.objects.create()
+        self.address = Address.objects.create(
+            number=1,
+            street="",
+            city="",
+            state="",
+            zip_code=2,
+            country_iso_code=""
+        )
+        self.letting = Letting.objects.create(title="Test Title", address=self.address)
 
     def test_lettings_index(self):
         response = self.client.get(reverse("lettings:index"))
+        self.assertContains(response, "<title>Lettings</title>")
         assert response.status_code == 200
         self.assertTemplateUsed(response, "lettings/index.html")
 
     def test_lettings_title(self):
-        response = self.client.get(reverse("lettings:letting"))
-        assert b"Lettings" in response
+        response = self.client.get(reverse("lettings:letting", args=[self.letting.id]))
+        self.assertContains(response, "Test Title")
+        assert response.status_code == 200
