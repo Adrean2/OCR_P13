@@ -27,9 +27,9 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-        image: adrean/oc-lettings-p13
+        - image: adrean/oc-lettings-p13
       - docker/push:
-        image: adrean/oc-lettings-p13
+        - image: adrean/oc-lettings-p13
   build-and-push-heroku:
     docker:
       - image: cimg/python:3.10.2
