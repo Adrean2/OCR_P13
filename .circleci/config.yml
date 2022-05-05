@@ -28,9 +28,9 @@ jobs:
       - run:
           name: Start container and push to Docker
           command: |
-          docker build -t $DOCKER_HUB_USER/oc-lettings-p13:$CIRCLE_SHA1 .
-          echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USER --password-stdin
-          docker push $DOCKER_HUB_USER/oc-lettings-p13:$CIRCLE_SHA1
+            docker build -t $DOCKER_HUB_USER/oc-lettings-p13:$CIRCLE_SHA1 .
+            echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USER --password-stdin
+            docker push $DOCKER_HUB_USER/oc-lettings-p13:$CIRCLE_SHA1
   #      - docker/build:
   #          image: ${DOCKER_LOGIN}/oc-lettings-p13
   #      - docker/push:
