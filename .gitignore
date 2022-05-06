@@ -6,4 +6,3 @@ venv
 Pipfile
 Pipfile.lock
 oc-lettings-site.sqlite3
-backups
