@@ -18,11 +18,11 @@ class LettingsTest(TestCase):
 
     def test_lettings_index(self):
         response = self.client.get(reverse("lettings:index"))
-        self.assertContains(response, "<title>Lettings</title>")
         assert response.status_code == 200
+        self.assertContains(response, "<title>Lettings</title>")
         self.assertTemplateUsed(response, "lettings/index.html")
 
     def test_lettings_title(self):
         response = self.client.get(reverse("lettings:letting", args=[self.letting.id]))
-        self.assertContains(response, "Test Title")
         assert response.status_code == 200
+        self.assertContains(response, "<title>Test Title</title>")
