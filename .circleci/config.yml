@@ -31,8 +31,8 @@ jobs:
             docker build \
             --build-arg SECRET="${SECRET_KEY}" \
             --build-arg DSN="${SENTRY_DSN}" \
-      - docker/build:
-          image: ${DOCKER_LOGIN}/oc-lettings-p13
+            -t ${DOCKER_LOGIN}/${DOCKER_TAG}:$CIRCLE_SHA1
+            
       - docker/push:
           image: ${DOCKER_LOGIN}/oc-lettings-p13
 
