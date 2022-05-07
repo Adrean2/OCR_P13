@@ -4,7 +4,7 @@ from . import views
 
 
 def trigger_error(request):
-    print(1 / 0)
+    division_by_zero = 1 / 0
 
 
 urlpatterns = [path('', views.index, name='index'),
