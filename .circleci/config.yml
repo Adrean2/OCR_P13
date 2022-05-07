@@ -26,7 +26,7 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          extra_build_args: 'SENTRY_DSN=$SENTRY_DSN DEBUG=$DEBUG'
+          extra_build_args: '--build-arg SENTRY_DSN=$SENTRY_DSN --build-arg DEBUG=$DEBUG'
           image: ${DOCKER_LOGIN}/oc-lettings-p13
       - docker/push:
           image: ${DOCKER_LOGIN}/oc-lettings-p13
