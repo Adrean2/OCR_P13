@@ -1,13 +1,13 @@
 import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
-print(os.environ)
-DEBUG = True
+SECRET_KEY = get_random_secret_key()
+DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = ["oc-lettings-45.herokuapp.com", "127.0.0.1", "localhost"]
 
