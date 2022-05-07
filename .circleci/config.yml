@@ -19,17 +19,6 @@ jobs:
           name: Run Flake8
           command: flake8
 
-  build-docker:
-    executor: docker/docker
-    steps:
-      - setup_remote_docker
-      - checkout
-      - docker/check
-      - docker/publish:
-          extra_build_args: '--build-arg SENTRY_DSN=$SENTRY_DSN --build-arg DEBUG=$DEBUG'
-          image: ${DOCKER_LOGIN}/oc-lettings-p13
-
-
   build-and-push-heroku:
     docker:
       - image: cimg/python:3.10.2
@@ -42,15 +31,12 @@ workflows:
   P13-workflow:
     jobs:
       - build-and-test
-      - build-docker:
-          requires:
-            - build-and-test # only run deploy-via-git job if the build job has completed
-          filters:
-            branches:
-              only: main
+      - docker/publish:
+          extra_build_args: '--build-arg SENTRY_DSN=$SENTRY_DSN --build-arg DEBUG=$DEBUG'
+          image: ${DOCKER_LOGIN}/oc-lettings-p13
       - build-and-push-heroku:
           requires:
-            - build-docker # only run deploy-via-git job if the build job has completed
+            - docker/publish # only run deploy-via-git job if the build job has completed
           filters:
             branches:
               only: main
