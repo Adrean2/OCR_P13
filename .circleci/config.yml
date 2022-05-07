@@ -26,6 +26,7 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
+          extra_build_args: 'SENTRY_DSN=$SENTRY_DSN'
           image: ${DOCKER_LOGIN}/oc-lettings-p13
       - docker/push:
           image: ${DOCKER_LOGIN}/oc-lettings-p13
