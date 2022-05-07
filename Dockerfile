@@ -6,6 +6,12 @@ COPY requirements.txt .
 ENV PYTHONDONTWRITEBYTCODE=1
 ENV PYTHONUNBUFFERED=1
 
+ARG SECRET_KEY=secret_key_dummy
+ENV SECRET_KEY=${"SECRET_KEY"}
+
+ARG SENTRY_DSN=sentry_dns_dummy
+ENV SENTRY_DSN=${"SENTRY_DSN"}
+
 RUN pip install -r requirements.txt
 COPY . /app
 
