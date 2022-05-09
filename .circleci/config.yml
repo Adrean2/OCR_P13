@@ -42,7 +42,7 @@ jobs:
       - checkout
       - heroku/install
       #      Supprime l'application dans le cadre de la démo
-      - run: heroku apps:destroy $HEROKU_APP_NAME
+      - run: heroku apps:destroy $HEROKU_APP_NAME -f
       #      Créer l'application
       - run: heroku apps:create $HEROKU_APP_NAME --region eu
       #      Ajoute les variables SENTRY_DSN/DEBUG lors du déploiement heroku
