@@ -5,6 +5,8 @@ COPY requirements.txt .
 
 ENV PYTHONDONTWRITEBYTCODE=1
 ENV PYTHONUNBUFFERED=1
+ENV DEBUG=$DEBUG
+ENV SENTRY_DSN=$SENTRY_DSN
 
 RUN pip install -r requirements.txt
 COPY . /app
