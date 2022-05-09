@@ -42,8 +42,8 @@ jobs:
       - checkout
       - heroku/install
       - heroku/deploy-via-git
-      - run: heroku config:set SENTRY_DSN=$SENTRY_DSN
-      - run: heroku config:set DEBUG=$DEBUG
+      - run: heroku config:set SENTRY_DSN=$SENTRY_DSN -a $HEROKU_APP_NAME
+      - run: heroku config:set DEBUG=$DEBUG -a $HEROKU_APP_NAME
 
 
 workflows:
