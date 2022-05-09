@@ -40,8 +40,8 @@ jobs:
       - image: cimg/python:3.10.2
     steps:
       - checkout
-      - run: heroku apps:create $HEROKU_APP_NAME --region eu
       - heroku/install
+      - run: heroku apps:create $HEROKU_APP_NAME --region eu
       - heroku/deploy-via-git
       - run: heroku config:set SENTRY_DSN=$SENTRY_DSN -a $HEROKU_APP_NAME
       - run: heroku config:set DEBUG=$DEBUG -a $HEROKU_APP_NAME
