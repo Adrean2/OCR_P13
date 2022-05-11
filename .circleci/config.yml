@@ -21,10 +21,6 @@ jobs:
 
   build-docker:
     executor: docker/docker
-    environment:
-      SENTRY_DSN: ${SENTRY_DSN}
-      DEBUG: ${DEBUG}
-
     steps:
       - setup_remote_docker
       - checkout
