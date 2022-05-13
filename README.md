@@ -82,3 +82,18 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1`
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+
+## Déploiement
+### Docker
+Pour déployer l'application localement via docker vous devrez :
+- Télécharger l'image avec la commande ```docker pull nom_d_utilisateur_docker/nom_de_l'image_:tag_de_l'image```
+- Activer l'image avec la commande```docker run -p 8000:8000 nom_d_utilisateur_docker/nom_de_l'image_:tag_de_l'image```<br>
+
+#### Dans mon cas:
+- Cliquez [ici](https://hub.docker.com/r/adrean/oc-lettings-p13/tags)
+- Copiez la commande en cliquant sur la dernière image publiée <br> ![pull docker](https://puu.sh/J05wo/cee4d2b053.png)
+- Collez la commande dans votre terminal pour la télécharger <br> ![pull docker2](https://puu.sh/J05xa/0f56888513.png)
+- Activez l'image localement: <br> ![docker run](https://puu.sh/J05yN/548fa56835.png) <br> 
+- Le site est disponible sur le ```localhost:8000``` grâce à docker ! <br>
+![site fonctionnel](https://puu.sh/J05zA/167109e4aa.png)<br>
